@@ -1,30 +1,24 @@
 {% extends 'base.html'%}
-{% block body %}
-
-<form  method="post" action="/">
+{%  block body %}
+<h3 style="height: 40px;">Edit the task</h3>
+<form  method="post" action="/update/{{toto.sno}}">
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Add new task</label>
-    <input name="title"  type="text" class="form-control" id="exampleInputtask1" aria-describedby="emailHelp">
+    <label for="exampleInputEmail1" class="form-label">Rename Task</label>
+    <input name="title" value="{{toto.title}}" type="text" class="form-control" id="exampleInputtask1" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text"></div>
   </div>
   <div class="mb-3">
-    <label for="exampleInputdesc1" class="form-label">Description</label>
-    <input name="desc"  type="text" class="form-control" id="exampleInputdesc1">
+    <label for="exampleInputdesc1" class="form-label">Rename Description</label>
+    <input name="desc" value="{{toto.desc}}" type="text" class="form-control" id="exampleInputdesc1">
   </div>
   <div  class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1"></label>
   </div>
   <div style="height: 60px;">
-  <button type="submit" class="btn btn-primary">Add</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
-{% if allTodo|length==0 %}
-  <br> No Tasks found!
-
-  
-{% else %}
-  
 
 <h3 style="height: 50px;">Pending Tasks</h3>
 <table class="table">
@@ -42,22 +36,20 @@
   <tbody>
     {% for toto in allTodo %}
    <tr>
-          <td scope="row">{{loop.index}}</td>
+          <td> scope="row">{{loop.index}}</td>
           <td>{{toto.title}}</td>
           <td>{{toto.desc}}</td>
           <td>{{toto.date_created}}</td>
           <td>  <a href="/delete/{{toto.sno}}" type="button" class="btn btn-outline-danger btn-sm mx-1">Delete</button></a>
-            <a href="/update/{{toto.sno}}" type="button" class="btn btn-outline-warning btn-sm mx-1">Update</button></a></td>
-          
+           <a href="/update/{{toto.sno}}" type="button" class="btn btn-outline-warning btn-sm mx-1">Update</button></a></td>
+          {% endfor %}
       </tr>
-      {% endfor %}
     </tbody>
 </table>
 
 
-
+{% endblock body %}
       
- {% endif %}   
- {% endblock body %}
+    
     
   
